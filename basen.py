@@ -23,44 +23,45 @@
 
 def base_n(inputNumber: int, baseValue: int) -> str:
     """
-    Python documentation can be written like this for the help() command
+    This function converts any positive int value into another base, between 2 to 16
     
     Function: base_n
     Inputs: inputNumber, a decimal int. baseValue, an int.
-    Preconditions: inputNumber or baseValue are both positive numbers. 
+    Preconditions: 0 <= inputNumber, 2 <= baseValue <= 16
     Output: outputNumber, a string.
     Postconditions: inputNumber will be converted into decimal if necessary, converted to baseValue and then returned as outputNumber.
     """
-    if baseValue >= 11 or baseValue <=15 or baseValue > 17:
-        return "Incorrect base value supplied, please use 2,8,10,16"
+    if inputNumber >= 0 and 2 <= baseValue <= 16:
 
-    outputNumber = ""
+        outputNumber = ""
 
-    ##convert input to decimal here
+        ##convert input to decimal here
 
-    if inputNumber == 0:
-        return [0]
-    while inputNumber >= 1:
-        remainder = inputNumber % baseValue
-        if remainder >= 10:
-            if remainder >= 11: 
-                if remainder >= 12: 
-                    if remainder >= 13:
-                        if remainder >= 14: 
-                            if remainder == 15:
-                                outputNumber = "F" + outputNumber
+        if inputNumber == 0:
+            return inputNumber
+        while inputNumber >= 1:
+            remainder = inputNumber % baseValue
+            if remainder >= 10:
+                if remainder >= 11: 
+                    if remainder >= 12: 
+                        if remainder >= 13:
+                            if remainder >= 14: 
+                                if remainder == 15:
+                                    outputNumber = "F" + outputNumber
+                                else:
+                                    outputNumber = "E" + outputNumber
                             else:
-                                outputNumber = "E" + outputNumber
+                                outputNumber = "D" + outputNumber
                         else:
-                            outputNumber = "D" + outputNumber
+                            outputNumber = "C" + outputNumber
                     else:
-                        outputNumber = "C" + outputNumber
+                        outputNumber = "B" + outputNumber
                 else:
-                    outputNumber = "B" + outputNumber
+                    outputNumber = "A" + outputNumber
             else:
-                outputNumber = "A" + outputNumber
-        else:
-            outputNumber = "{}".format(remainder) + outputNumber
-        inputNumber //= baseValue
-        print(outputNumber)            
-    return outputNumber
+                outputNumber = "{}".format(remainder) + outputNumber
+            inputNumber //= baseValue
+            print(outputNumber)            
+        return outputNumber
+    else:
+        print("Enter valid input, please use the help() command if necessary")
